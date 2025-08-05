@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './hooks/useAuth';
 import { Navbar } from './components/Layout/Navbar';
@@ -59,7 +59,7 @@ function DashboardRouter() {
 }
 
 function AppContent() {
-  const { user, profile } = useAuth();
+  const { user } = useAuth();
 
   return (
     <div className="min-h-screen">

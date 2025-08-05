@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card } from '../../components/UI/Card';
 import { Button } from '../../components/UI/Button';
 import { 
@@ -37,11 +37,7 @@ export function ClientDashboard() {
     return 'text-red-600';
   };
 
-  const getScoreGradient = (score: number) => {
-    if (score >= 750) return 'from-green-500 to-green-600';
-    if (score >= 650) return 'from-yellow-500 to-orange-500';
-    return 'from-red-500 to-red-600';
-  };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 p-4 sm:p-6">
