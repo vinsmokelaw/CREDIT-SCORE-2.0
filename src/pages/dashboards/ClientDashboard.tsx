@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Card } from '../../components/UI/Card';
 import { Button } from '../../components/UI/Button';
-import { ErrorBoundary } from '../../components/ErrorBoundary';
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -45,24 +44,23 @@ export function ClientDashboard() {
   };
 
   return (
-    <ErrorBoundary>
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2">
             Welcome back! 👋
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-lg sm:text-xl text-gray-600">
             Here's your credit health overview
           </p>
         </div>
 
         {/* Credit Score Card */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          <Card className="lg:col-span-2 p-8 bg-gradient-to-br from-white to-purple-50">
+          <Card className="lg:col-span-2 p-6 sm:p-8 bg-gradient-to-br from-white to-purple-50">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Your Credit Score</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Your Credit Score</h2>
               <div className="flex items-center space-x-2">
                 {scoreChange > 0 ? (
                   <TrendingUp className="h-5 w-5 text-green-500" />
@@ -77,7 +75,7 @@ export function ClientDashboard() {
             
             <div className="flex items-center justify-center mb-6">
               <div className="relative">
-                <svg className="w-48 h-48 transform -rotate-90" viewBox="0 0 100 100">
+                <svg className="w-32 h-32 sm:w-48 sm:h-48 transform -rotate-90" viewBox="0 0 100 100">
                   <circle
                     cx="50"
                     cy="50"
@@ -99,43 +97,43 @@ export function ClientDashboard() {
                   />
                   <defs>
                     <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#8b5cf6" />
-                      <stop offset="100%" stopColor="#6366f1" />
+                      <stop offset="0%" className="stop-color-purple-500" />
+                      <stop offset="100%" className="stop-color-indigo-500" />
                     </linearGradient>
                   </defs>
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <div className={`text-4xl font-bold ${getScoreColor(creditScore)}`}>
+                    <div className={`text-2xl sm:text-4xl font-bold ${getScoreColor(creditScore)}`}>
                       {creditScore}
                     </div>
-                    <div className="text-sm text-gray-600">out of 850</div>
+                    <div className="text-xs sm:text-sm text-gray-600">out of 850</div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 text-center">
+            <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
               <div>
-                <div className="text-sm text-gray-600">Poor</div>
+                <div className="text-xs sm:text-sm text-gray-600">Poor</div>
                 <div className="text-xs text-gray-500">300-579</div>
               </div>
               <div>
-                <div className="text-sm text-gray-600">Good</div>
+                <div className="text-xs sm:text-sm text-gray-600">Good</div>
                 <div className="text-xs text-gray-500">580-749</div>
               </div>
               <div>
-                <div className="text-sm text-gray-600">Excellent</div>
+                <div className="text-xs sm:text-sm text-gray-600">Excellent</div>
                 <div className="text-xs text-gray-500">750-850</div>
               </div>
             </div>
           </Card>
 
           {/* Quick Actions */}
-          <Card className="p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+          <Card className="p-4 sm:p-6">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
             <div className="space-y-3">
-              <Button variant="outline" className="w-full justify-between">
+              <Button variant="outline" className="w-full justify-between text-sm sm:text-base">
                 <div className="flex items-center">
                   <Calculator className="h-4 w-4 mr-2" />
                   Credit Simulator
@@ -143,7 +141,7 @@ export function ClientDashboard() {
                 <ChevronRight className="h-4 w-4" />
               </Button>
               
-              <Button variant="outline" className="w-full justify-between">
+              <Button variant="outline" className="w-full justify-between text-sm sm:text-base">
                 <div className="flex items-center">
                   <BookOpen className="h-4 w-4 mr-2" />
                   Learning Center
@@ -151,7 +149,7 @@ export function ClientDashboard() {
                 <ChevronRight className="h-4 w-4" />
               </Button>
               
-              <Button variant="outline" className="w-full justify-between">
+              <Button variant="outline" className="w-full justify-between text-sm sm:text-base">
                 <div className="flex items-center">
                   <Target className="h-4 w-4 mr-2" />
                   Set Goals
@@ -159,7 +157,7 @@ export function ClientDashboard() {
                 <ChevronRight className="h-4 w-4" />
               </Button>
 
-              <Button variant="outline" className="w-full justify-between">
+              <Button variant="outline" className="w-full justify-between text-sm sm:text-base">
                 <div className="flex items-center">
                   <CreditCard className="h-4 w-4 mr-2" />
                   Credit Report
@@ -172,15 +170,15 @@ export function ClientDashboard() {
 
         {/* Credit Factors */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <Card className="p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">Credit Score Factors</h3>
+          <Card className="p-4 sm:p-6">
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-6">Credit Score Factors</h3>
             <div className="space-y-4">
               {creditFactors.map((factor, index) => (
-                <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div key={index} className="flex items-center justify-between p-3 sm:p-4 bg-gray-50 rounded-lg">
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="font-medium text-gray-900">{factor.name}</span>
-                      <span className="text-sm font-semibold text-gray-700">{factor.score}%</span>
+                      <span className="text-sm sm:text-base font-medium text-gray-900">{factor.name}</span>
+                      <span className="text-xs sm:text-sm font-semibold text-gray-700">{factor.score}%</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div 
@@ -204,14 +202,14 @@ export function ClientDashboard() {
           </Card>
 
           {/* Notifications */}
-          <Card className="p-6">
+          <Card className="p-4 sm:p-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-semibold text-gray-900">Recent Activity</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900">Recent Activity</h3>
               <Bell className="h-5 w-5 text-purple-600" />
             </div>
             <div className="space-y-4">
               {notifications.map((notification) => (
-                <div key={notification.id} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                <div key={notification.id} className="flex items-start space-x-3 p-3 sm:p-4 bg-gray-50 rounded-lg">
                   <div className={`p-2 rounded-full ${
                     notification.type === 'positive' ? 'bg-green-100' :
                     notification.type === 'reminder' ? 'bg-yellow-100' :
@@ -222,7 +220,7 @@ export function ClientDashboard() {
                     {notification.type === 'tip' && <BookOpen className="h-4 w-4 text-blue-600" />}
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900">{notification.message}</p>
+                    <p className="text-xs sm:text-sm font-medium text-gray-900">{notification.message}</p>
                     <p className="text-xs text-gray-500 mt-1">{notification.time}</p>
                   </div>
                 </div>
@@ -232,14 +230,14 @@ export function ClientDashboard() {
         </div>
 
         {/* Educational Section */}
-        <Card className="p-8 bg-gradient-to-r from-purple-600 to-indigo-700 text-white">
-          <div className="flex items-center justify-between">
+        <Card className="p-6 sm:p-8 bg-gradient-to-r from-purple-600 to-indigo-700 text-white">
+          <div className="flex flex-col md:flex-row items-center justify-between">
             <div>
               <div className="flex items-center mb-4">
                 <Award className="h-8 w-8 mr-3" />
-                <h3 className="text-2xl font-bold">Improve Your Score</h3>
+                <h3 className="text-xl sm:text-2xl font-bold">Improve Your Score</h3>
               </div>
-              <p className="text-purple-100 mb-6 text-lg">
+              <p className="text-purple-100 mb-6 text-base sm:text-lg">
                 Get personalized tips and strategies to boost your credit score by up to 100 points.
               </p>
               <Button variant="secondary" size="lg">
@@ -247,7 +245,7 @@ export function ClientDashboard() {
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
-            <div className="hidden md:block">
+            <div className="hidden md:block mt-6 md:mt-0">
               <div className="bg-white/10 rounded-2xl p-6">
                 <TrendingUp className="h-16 w-16 text-white" />
               </div>
@@ -255,7 +253,6 @@ export function ClientDashboard() {
           </div>
         </Card>
       </div>
-      </div>
-    </ErrorBoundary>
+    </div>
   );
 }

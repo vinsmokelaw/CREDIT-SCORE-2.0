@@ -4,10 +4,16 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
+  console.error('Missing Supabase environment variables. Please check your .env file.');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(supabaseUrl || '', supabaseAnonKey || '', {
+  auth: {
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: true
+  }
+});
 
 export type UserType = 'client' | 'bank';
 
@@ -18,20 +24,12 @@ export interface Profile {
   full_name: string;
   created_at: string;
   updated_at: string;
-  // Client-specific fields
-  phone_number?: string;
-  date_of_birth?: string;
-  // Bank-specific fields
-  bank_name?: string;
-  bank_code?: string;
-  contact_person?: string;
-  business_address?: string;
 }
 
 export interface CreditScore {
   id: string;
   user_id: string;
   score: number;
-  factors: Record<string, number>;
+  factors: Record<string, any>;
   created_at: string;
 }

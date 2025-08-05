@@ -12,15 +12,7 @@ export function Signup() {
     fullName: '',
     email: '',
     password: '',
-    confirmPassword: '',
-    // Client-specific fields
-    phoneNumber: '',
-    dateOfBirth: '',
-    // Bank-specific fields
-    bankName: '',
-    bankCode: '',
-    contactPerson: '',
-    businessAddress: ''
+    confirmPassword: ''
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -50,24 +42,10 @@ export function Signup() {
     setError('');
 
     try {
-      // Prepare user data based on user type
-      const userData: any = {
+      await signUp(formData.email, formData.password, {
         full_name: formData.fullName,
         user_type: userType
-      };
-
-      // Add user-type specific fields
-      if (userType === 'client') {
-        userData.phone_number = formData.phoneNumber;
-        userData.date_of_birth = formData.dateOfBirth;
-      } else if (userType === 'bank') {
-        userData.bank_name = formData.bankName;
-        userData.bank_code = formData.bankCode;
-        userData.contact_person = formData.fullName; // Use fullName as contact person
-        userData.business_address = formData.businessAddress;
-      }
-
-      await signUp(formData.email, formData.password, userData);
+      });
       
       navigate(userType === 'bank' ? '/bank-dashboard' : '/client-dashboard');
     } catch (error: any) {
@@ -79,7 +57,7 @@ export function Signup() {
 
   if (!userType) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center p-4 pt-20">
         <div className="w-full max-w-4xl">
           <div className="text-center mb-12">
             <Link to="/" className="inline-flex items-center space-x-2 mb-8">
@@ -90,84 +68,80 @@ export function Signup() {
                 Berries
               </span>
             </Link>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Choose Your Account Type
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-600">
               Select the option that best describes your role
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div 
-              className="cursor-pointer transition-all duration-500 transform hover:scale-105"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <Card 
+              className="p-6 sm:p-8 cursor-pointer hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-2 border-transparent hover:border-purple-200"
               onClick={() => setUserType('client')}
             >
-              <Card className="p-8 hover:shadow-2xl border-2 border-transparent hover:border-purple-200">
               <div className="text-center">
                 <div className="bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <User className="h-10 w-10 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Individual Client</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Individual Client</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   Perfect for individuals looking to understand and improve their credit score with AI-powered insights and predictions.
                 </p>
                 <div className="space-y-3 text-left">
-                  <div className="flex items-center text-green-600">
+                  <div className="flex items-center text-green-600 text-sm sm:text-base">
                     <CheckCircle className="h-5 w-5 mr-3" />
                     <span>Personal credit score tracking</span>
                   </div>
-                  <div className="flex items-center text-green-600">
+                  <div className="flex items-center text-green-600 text-sm sm:text-base">
                     <CheckCircle className="h-5 w-5 mr-3" />
                     <span>AI-powered predictions</span>
                   </div>
-                  <div className="flex items-center text-green-600">
+                  <div className="flex items-center text-green-600 text-sm sm:text-base">
                     <CheckCircle className="h-5 w-5 mr-3" />
                     <span>Educational resources</span>
                   </div>
-                  <div className="flex items-center text-green-600">
+                  <div className="flex items-center text-green-600 text-sm sm:text-base">
                     <CheckCircle className="h-5 w-5 mr-3" />
                     <span>Credit improvement tips</span>
                   </div>
                 </div>
               </div>
-              </Card>
-            </div>
+            </Card>
 
-            <div 
-              className="cursor-pointer transition-all duration-500 transform hover:scale-105"
+            <Card 
+              className="p-6 sm:p-8 cursor-pointer hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-2 border-transparent hover:border-purple-200"
               onClick={() => setUserType('bank')}
             >
-              <Card className="p-8 hover:shadow-2xl border-2 border-transparent hover:border-purple-200">
               <div className="text-center">
                 <div className="bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Building className="h-10 w-10 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Bank Representative</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Bank Representative</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   Designed for financial institutions to assess client creditworthiness and make informed lending decisions.
                 </p>
                 <div className="space-y-3 text-left">
-                  <div className="flex items-center text-green-600">
+                  <div className="flex items-center text-green-600 text-sm sm:text-base">
                     <CheckCircle className="h-5 w-5 mr-3" />
                     <span>Advanced analytics dashboard</span>  
                   </div>
-                  <div className="flex items-center text-green-600">
+                  <div className="flex items-center text-green-600 text-sm sm:text-base">
                     <CheckCircle className="h-5 w-5 mr-3" />
                     <span>Bulk credit assessments</span>
                   </div>
-                  <div className="flex items-center text-green-600">
+                  <div className="flex items-center text-green-600 text-sm sm:text-base">
                     <CheckCircle className="h-5 w-5 mr-3" />
                     <span>Risk management tools</span>
                   </div>
-                  <div className="flex items-center text-green-600">
+                  <div className="flex items-center text-green-600 text-sm sm:text-base">
                     <CheckCircle className="h-5 w-5 mr-3" />
                     <span>Compliance reporting</span>
                   </div>
                 </div>
               </div>
-              </Card>
-            </div>
+            </Card>
           </div>
 
           <div className="text-center mt-8">
@@ -184,7 +158,7 @@ export function Signup() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center p-4 pt-20">
       <Card className="w-full max-w-md p-8">
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center space-x-2 mb-6">
@@ -202,7 +176,7 @@ export function Signup() {
             ) : (
               <Building className="h-6 w-6 text-purple-600" />
             )}
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
               {userType === 'client' ? 'Individual' : 'Bank'} Account
             </h1>
           </div>
@@ -222,10 +196,9 @@ export function Signup() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Common fields for both user types */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              {userType === 'client' ? 'Full Name' : 'Contact Person Name'}
+              Full Name
             </label>
             <input
               type="text"
@@ -233,7 +206,7 @@ export function Signup() {
               value={formData.fullName}
               onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-              placeholder={userType === 'client' ? 'Enter your full name' : 'Enter contact person name'}
+              placeholder="Enter your full name"
             />
           </div>
 
@@ -247,88 +220,9 @@ export function Signup() {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-              placeholder={userType === 'client' ? 'Enter your email' : 'Enter business email'}
+              placeholder="Enter your email"
             />
           </div>
-
-          {/* Client-specific fields */}
-          {userType === 'client' && (
-            <>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  required
-                  value={formData.phoneNumber}
-                  onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder="Enter your phone number"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Date of Birth
-                </label>
-                <input
-                  type="date"
-                  required
-                  value={formData.dateOfBirth}
-                  onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                />
-              </div>
-            </>
-          )}
-
-          {/* Bank-specific fields */}
-          {userType === 'bank' && (
-            <>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Bank Name
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.bankName}
-                  onChange={(e) => setFormData({ ...formData, bankName: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder="Enter your bank name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Bank Code / Swift Code
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.bankCode}
-                  onChange={(e) => setFormData({ ...formData, bankCode: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder="Enter bank code or SWIFT code"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Business Address
-                </label>
-                <textarea
-                  required
-                  value={formData.businessAddress}
-                  onChange={(e) => setFormData({ ...formData, businessAddress: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder="Enter your business address"
-                  rows={3}
-                />
-              </div>
-            </>
-          )}
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">

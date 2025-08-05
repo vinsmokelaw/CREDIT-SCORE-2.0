@@ -103,13 +103,14 @@ export function Landing() {
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6">
                 Smart Credit Score
                 <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent"> Predictions</span>
-                <br />for Zimbabwe
+                <br className="hidden sm:block" />
+                <span className="sm:hidden"> </span>for Zimbabwe
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 mb-10 leading-relaxed max-w-4xl mx-auto">
                 Empower your financial decisions with AI-driven credit score predictions, interactive simulations, 
                 and personalized insights tailored for the Zimbabwean market.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
                 <Link to="/signup">
                   <Button size="lg" className="w-full sm:w-auto">
                     Start Free Trial
@@ -118,7 +119,7 @@ export function Landing() {
                 </Link>
                 <button 
                   onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-4 border-2 border-purple-200 text-purple-700 rounded-xl hover:bg-purple-50 hover:border-purple-300 transition-all duration-300 font-semibold"
+                  className="w-full sm:w-auto px-8 py-4 border-2 border-purple-200 text-purple-700 rounded-xl hover:bg-purple-50 hover:border-purple-300 transition-all duration-300 font-semibold"
                 >
                   Explore Features
                 </button>
@@ -131,11 +132,11 @@ export function Landing() {
       {/* Stats Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
               <Card 
                 key={index} 
-                className="text-center p-8 border-0 bg-gradient-to-br from-white to-purple-50"
+                className="text-center p-6 sm:p-8 border-0 bg-gradient-to-br from-white to-purple-50"
                 hover
               >
                 <div className="bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
@@ -170,11 +171,11 @@ export function Landing() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {features.map((feature, index) => (
               <Card 
                 key={index} 
-                className="p-8 border-0 bg-white/80 backdrop-blur-sm"
+                className="p-6 lg:p-8 border-0 bg-white/80 backdrop-blur-sm"
                 hover
               >
                 <div className="bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl w-16 h-16 flex items-center justify-center mb-6 shadow-lg">
@@ -209,7 +210,7 @@ export function Landing() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
                 step: 1,
@@ -231,7 +232,7 @@ export function Landing() {
                 <div className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-xl">
                   {item.step}
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">
                   {item.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -263,9 +264,9 @@ export function Landing() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-8 border-0 bg-white/80 backdrop-blur-sm" hover>
+              <Card key={index} className="p-6 lg:p-8 border-0 bg-white/80 backdrop-blur-sm" hover>
                 <div className="flex items-center mb-6">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
@@ -308,14 +309,14 @@ export function Landing() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/signup">
-              <button className="bg-white text-purple-700 hover:bg-gray-100 w-full sm:w-auto shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 px-8 py-4 rounded-xl font-semibold flex items-center justify-center">
+              <button className="bg-white text-purple-700 hover:bg-gray-100 w-full sm:w-auto shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-4 rounded-xl font-semibold flex items-center justify-center">
                 Start Your Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />
               </button>
             </Link>
             <button 
               onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-4 border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300 font-semibold rounded-xl backdrop-blur-sm"
+              className="w-full sm:w-auto px-6 sm:px-8 py-4 border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300 font-semibold rounded-xl backdrop-blur-sm"
             >
               Learn More
             </button>

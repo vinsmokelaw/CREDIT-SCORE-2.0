@@ -50,19 +50,19 @@ export function BankDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
           <div>
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2">
               Bank Dashboard
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-600">
               Comprehensive credit analytics and risk management
             </p>
           </div>
-          <div className="flex items-center space-x-4 mt-4 lg:mt-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-4 lg:mt-0">
             <Button variant="outline" size="sm">
               <Download className="h-4 w-4 mr-2" />
               Export Report
@@ -75,12 +75,12 @@ export function BankDashboard() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card className="p-6 bg-gradient-to-br from-white to-blue-50" hover>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+          <Card className="p-4 sm:p-6 bg-gradient-to-br from-white to-blue-50" hover>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Clients</p>
-                <p className="text-3xl font-bold text-gray-900">{stats.totalClients.toLocaleString()}</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-600">Total Clients</p>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900">{stats.totalClients.toLocaleString()}</p>
                 <p className="text-sm text-green-600 flex items-center mt-1">
                   <TrendingUp className="h-4 w-4 mr-1" />
                   +12% this month
@@ -92,11 +92,11 @@ export function BankDashboard() {
             </div>
           </Card>
 
-          <Card className="p-6 bg-gradient-to-br from-white to-green-50" hover>
+          <Card className="p-4 sm:p-6 bg-gradient-to-br from-white to-green-50" hover>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Avg Credit Score</p>
-                <p className="text-3xl font-bold text-gray-900">{stats.avgCreditScore}</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-600">Avg Credit Score</p>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900">{stats.avgCreditScore}</p>
                 <p className="text-sm text-green-600 flex items-center mt-1">
                   <TrendingUp className="h-4 w-4 mr-1" />
                   +8 points
@@ -108,11 +108,11 @@ export function BankDashboard() {
             </div>
           </Card>
 
-          <Card className="p-6 bg-gradient-to-br from-white to-purple-50" hover>
+          <Card className="p-4 sm:p-6 bg-gradient-to-br from-white to-purple-50" hover>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Approval Rate</p>
-                <p className="text-3xl font-bold text-gray-900">{stats.approvalRate}%</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-600">Approval Rate</p>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900">{stats.approvalRate}%</p>
                 <p className="text-sm text-green-600 flex items-center mt-1">
                   <TrendingUp className="h-4 w-4 mr-1" />
                   +3.2%
@@ -124,11 +124,11 @@ export function BankDashboard() {
             </div>
           </Card>
 
-          <Card className="p-6 bg-gradient-to-br from-white to-yellow-50" hover>
+          <Card className="p-4 sm:p-6 bg-gradient-to-br from-white to-yellow-50" hover>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Portfolio Value</p>
-                <p className="text-3xl font-bold text-gray-900">
+                <p className="text-xs sm:text-sm font-medium text-gray-600">Portfolio Value</p>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900">
                   ${(stats.portfolioValue / 1000000).toFixed(1)}M
                 </p>
                 <p className="text-sm text-green-600 flex items-center mt-1">
@@ -146,10 +146,10 @@ export function BankDashboard() {
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           {/* Recent Applications */}
-          <Card className="lg:col-span-2 p-6">
+          <Card className="lg:col-span-2 p-4 sm:p-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-semibold text-gray-900">Recent Applications</h3>
-              <div className="flex items-center space-x-2">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900">Recent Applications</h3>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
                 <Button variant="outline" size="sm">
                   <Filter className="h-4 w-4 mr-2" />
                   Filter
@@ -162,46 +162,46 @@ export function BankDashboard() {
             </div>
             
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[600px]">
                 <thead>
                   <tr className="border-b border-gray-200">
-                    <th className="text-left py-3 px-4 font-semibold text-gray-700">Applicant</th>
-                    <th className="text-left py-3 px-4 font-semibold text-gray-700">Credit Score</th>
-                    <th className="text-left py-3 px-4 font-semibold text-gray-700">Amount</th>
-                    <th className="text-left py-3 px-4 font-semibold text-gray-700">Risk</th>
-                    <th className="text-left py-3 px-4 font-semibold text-gray-700">Status</th>
+                    <th className="text-left py-3 px-2 sm:px-4 font-semibold text-gray-700 text-sm">Applicant</th>
+                    <th className="text-left py-3 px-2 sm:px-4 font-semibold text-gray-700 text-sm">Score</th>
+                    <th className="text-left py-3 px-2 sm:px-4 font-semibold text-gray-700 text-sm">Amount</th>
+                    <th className="text-left py-3 px-2 sm:px-4 font-semibold text-gray-700 text-sm">Risk</th>
+                    <th className="text-left py-3 px-2 sm:px-4 font-semibold text-gray-700 text-sm">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {recentApplications.map((application) => (
                     <tr key={application.id} className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-4 px-4">
+                      <td className="py-4 px-2 sm:px-4">
                         <div className="flex items-center">
-                          <div className="bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full w-8 h-8 flex items-center justify-center mr-3">
-                            <span className="text-white text-sm font-semibold">
+                          <div className="bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center mr-2 sm:mr-3">
+                            <span className="text-white text-xs sm:text-sm font-semibold">
                               {application.name.split(' ').map(n => n[0]).join('')}
                             </span>
                           </div>
-                          <span className="font-medium text-gray-900">{application.name}</span>
+                          <span className="font-medium text-gray-900 text-sm sm:text-base">{application.name}</span>
                         </div>
                       </td>
-                      <td className="py-4 px-4">
+                      <td className="py-4 px-2 sm:px-4">
                         <span className={`font-semibold ${
                           application.score >= 700 ? 'text-green-600' :
                           application.score >= 600 ? 'text-yellow-600' : 'text-red-600'
-                        }`}>
+                        } text-sm sm:text-base`}>
                           {application.score}
                         </span>
                       </td>
-                      <td className="py-4 px-4 font-medium text-gray-900">
+                      <td className="py-4 px-2 sm:px-4 font-medium text-gray-900 text-sm sm:text-base">
                         ${application.amount.toLocaleString()}
                       </td>
-                      <td className="py-4 px-4">
-                        <span className={`font-semibold ${getRiskColor(application.risk)}`}>
+                      <td className="py-4 px-2 sm:px-4">
+                        <span className={`font-semibold text-sm sm:text-base ${getRiskColor(application.risk)}`}>
                           {application.risk.charAt(0).toUpperCase() + application.risk.slice(1)}
                         </span>
                       </td>
-                      <td className="py-4 px-4">
+                      <td className="py-4 px-2 sm:px-4">
                         <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusColor(application.status)}`}>
                           {application.status.charAt(0).toUpperCase() + application.status.slice(1)}
                         </span>
@@ -214,35 +214,35 @@ export function BankDashboard() {
           </Card>
 
           {/* Risk Analysis */}
-          <Card className="p-6">
+          <Card className="p-4 sm:p-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-semibold text-gray-900">Risk Distribution</h3>
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900">Risk Distribution</h3>
               <AlertTriangle className="h-5 w-5 text-yellow-500" />
             </div>
             
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg">
+              <div className="flex items-center justify-between p-3 sm:p-4 bg-green-50 rounded-lg">
                 <div>
-                  <p className="font-semibold text-green-800">Low Risk</p>
-                  <p className="text-sm text-green-600">1,847 clients</p>
+                  <p className="text-sm sm:text-base font-semibold text-green-800">Low Risk</p>
+                  <p className="text-xs sm:text-sm text-green-600">1,847 clients</p>
                 </div>
-                <div className="text-2xl font-bold text-green-600">65%</div>
+                <div className="text-xl sm:text-2xl font-bold text-green-600">65%</div>
               </div>
               
-              <div className="flex items-center justify-between p-4 bg-yellow-50 rounded-lg">
+              <div className="flex items-center justify-between p-3 sm:p-4 bg-yellow-50 rounded-lg">
                 <div>
-                  <p className="font-semibold text-yellow-800">Medium Risk</p>
-                  <p className="text-sm text-yellow-600">712 clients</p>
+                  <p className="text-sm sm:text-base font-semibold text-yellow-800">Medium Risk</p>
+                  <p className="text-xs sm:text-sm text-yellow-600">712 clients</p>
                 </div>
-                <div className="text-2xl font-bold text-yellow-600">25%</div>
+                <div className="text-xl sm:text-2xl font-bold text-yellow-600">25%</div>
               </div>
               
-              <div className="flex items-center justify-between p-4 bg-red-50 rounded-lg">
+              <div className="flex items-center justify-between p-3 sm:p-4 bg-red-50 rounded-lg">
                 <div>
-                  <p className="font-semibold text-red-800">High Risk</p>
-                  <p className="text-sm text-red-600">288 clients</p>
+                  <p className="text-sm sm:text-base font-semibold text-red-800">High Risk</p>
+                  <p className="text-xs sm:text-sm text-red-600">288 clients</p>
                 </div>
-                <div className="text-2xl font-bold text-red-600">10%</div>
+                <div className="text-xl sm:text-2xl font-bold text-red-600">10%</div>
               </div>
             </div>
 
@@ -254,14 +254,14 @@ export function BankDashboard() {
         </div>
 
         {/* Analytics Section */}
-        <Card className="p-8 bg-gradient-to-r from-indigo-600 to-purple-700 text-white">
-          <div className="flex items-center justify-between">
+        <Card className="p-6 sm:p-8 bg-gradient-to-r from-indigo-600 to-purple-700 text-white">
+          <div className="flex flex-col md:flex-row items-center justify-between">
             <div>
               <div className="flex items-center mb-4">
                 <Building className="h-8 w-8 mr-3" />
-                <h3 className="text-2xl font-bold">Advanced Analytics</h3>
+                <h3 className="text-xl sm:text-2xl font-bold">Advanced Analytics</h3>
               </div>
-              <p className="text-indigo-100 mb-6 text-lg">
+              <p className="text-indigo-100 mb-6 text-base sm:text-lg">
                 Access comprehensive reporting, predictive models, and risk assessment tools to optimize your lending decisions.
               </p>
               <Button variant="secondary" size="lg">
@@ -269,7 +269,7 @@ export function BankDashboard() {
                 <BarChart3 className="ml-2 h-5 w-5" />
               </Button>
             </div>
-            <div className="hidden md:block">
+            <div className="hidden md:block mt-6 md:mt-0">
               <div className="bg-white/10 rounded-2xl p-6">
                 <BarChart3 className="h-16 w-16 text-white" />
               </div>
