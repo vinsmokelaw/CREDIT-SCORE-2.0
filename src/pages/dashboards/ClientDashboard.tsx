@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card } from '../../components/UI/Card';
 import { Button } from '../../components/UI/Button';
+import { ErrorBoundary } from '../../components/ErrorBoundary';
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -44,7 +45,8 @@ export function ClientDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 p-6">
+    <ErrorBoundary>
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -97,8 +99,8 @@ export function ClientDashboard() {
                   />
                   <defs>
                     <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" className="stop-color-purple-500" />
-                      <stop offset="100%" className="stop-color-indigo-500" />
+                      <stop offset="0%" stopColor="#8b5cf6" />
+                      <stop offset="100%" stopColor="#6366f1" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -253,6 +255,7 @@ export function ClientDashboard() {
           </div>
         </Card>
       </div>
-    </div>
+      </div>
+    </ErrorBoundary>
   );
 }
