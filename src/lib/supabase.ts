@@ -18,12 +18,20 @@ export interface Profile {
   full_name: string;
   created_at: string;
   updated_at: string;
+  // Client-specific fields
+  phone_number?: string;
+  date_of_birth?: string;
+  // Bank-specific fields
+  bank_name?: string;
+  bank_code?: string;
+  contact_person?: string;
+  business_address?: string;
 }
 
 export interface CreditScore {
   id: string;
   user_id: string;
   score: number;
-  factors: Record<string, any>;
+  factors: Record<string, number>;
   created_at: string;
 }

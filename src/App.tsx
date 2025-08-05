@@ -60,7 +60,7 @@ function AppContent() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/signup" element={!user ? <Signup /> : <DashboardRouter />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={!user ? <Login /> : <DashboardRouter />} />
         
         <Route 

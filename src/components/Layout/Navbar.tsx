@@ -27,15 +27,51 @@ export function Navbar() {
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="text-gray-700 hover:text-purple-600 transition-colors">
+            <button 
+              onClick={() => {
+                if (window.location.pathname !== '/') {
+                  navigate('/');
+                  setTimeout(() => {
+                    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                } else {
+                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="text-gray-700 hover:text-purple-600 transition-colors cursor-pointer"
+            >
               Features
-            </a>
-            <a href="#how-it-works" className="text-gray-700 hover:text-purple-600 transition-colors">
+            </button>
+            <button 
+              onClick={() => {
+                if (window.location.pathname !== '/') {
+                  navigate('/');
+                  setTimeout(() => {
+                    document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                } else {
+                  document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="text-gray-700 hover:text-purple-600 transition-colors cursor-pointer"
+            >
               How it Works
-            </a>
-            <a href="#testimonials" className="text-gray-700 hover:text-purple-600 transition-colors">
+            </button>
+            <button 
+              onClick={() => {
+                if (window.location.pathname !== '/') {
+                  navigate('/');
+                  setTimeout(() => {
+                    document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                } else {
+                  document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="text-gray-700 hover:text-purple-600 transition-colors cursor-pointer"
+            >
               Testimonials
-            </a>
+            </button>
           </div>
 
           <div className="flex items-center space-x-4">

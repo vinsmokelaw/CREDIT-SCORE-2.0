@@ -12,7 +12,15 @@ export function Signup() {
     fullName: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    // Client-specific fields
+    phoneNumber: '',
+    dateOfBirth: '',
+    // Bank-specific fields
+    bankName: '',
+    bankCode: '',
+    contactPerson: '',
+    businessAddress: ''
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -42,10 +50,24 @@ export function Signup() {
     setError('');
 
     try {
-      await signUp(formData.email, formData.password, {
+      // Prepare user data based on user type
+      const userData: any = {
         full_name: formData.fullName,
         user_type: userType
-      });
+      };
+
+      // Add user-type specific fields
+      if (userType === 'client') {
+        userData.phone_number = formData.phoneNumber;
+        userData.date_of_birth = formData.dateOfBirth;
+      } else if (userType === 'bank') {
+        userData.bank_name = formData.bankName;
+        userData.bank_code = formData.bankCode;
+        userData.contact_person = formData.fullName; // Use fullName as contact person
+        userData.business_address = formData.businessAddress;
+      }
+
+      await signUp(formData.email, formData.password, userData);
       
       navigate(userType === 'bank' ? '/bank-dashboard' : '/client-dashboard');
     } catch (error: any) {
@@ -77,10 +99,11 @@ export function Signup() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card 
-              className="p-8 cursor-pointer hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-2 border-transparent hover:border-purple-200"
+            <div 
+              className="cursor-pointer transition-all duration-500 transform hover:scale-105"
               onClick={() => setUserType('client')}
             >
+              <Card className="p-8 hover:shadow-2xl border-2 border-transparent hover:border-purple-200">
               <div className="text-center">
                 <div className="bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <User className="h-10 w-10 text-white" />
@@ -108,12 +131,14 @@ export function Signup() {
                   </div>
                 </div>
               </div>
-            </Card>
+              </Card>
+            </div>
 
-            <Card 
-              className="p-8 cursor-pointer hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-2 border-transparent hover:border-purple-200"
+            <div 
+              className="cursor-pointer transition-all duration-500 transform hover:scale-105"
               onClick={() => setUserType('bank')}
             >
+              <Card className="p-8 hover:shadow-2xl border-2 border-transparent hover:border-purple-200">
               <div className="text-center">
                 <div className="bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Building className="h-10 w-10 text-white" />
@@ -141,7 +166,8 @@ export function Signup() {
                   </div>
                 </div>
               </div>
-            </Card>
+              </Card>
+            </div>
           </div>
 
           <div className="text-center mt-8">
@@ -196,9 +222,10 @@ export function Signup() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Common fields for both user types */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Full Name
+              {userType === 'client' ? 'Full Name' : 'Contact Person Name'}
             </label>
             <input
               type="text"
@@ -206,7 +233,7 @@ export function Signup() {
               value={formData.fullName}
               onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-              placeholder="Enter your full name"
+              placeholder={userType === 'client' ? 'Enter your full name' : 'Enter contact person name'}
             />
           </div>
 
@@ -220,9 +247,88 @@ export function Signup() {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-              placeholder="Enter your email"
+              placeholder={userType === 'client' ? 'Enter your email' : 'Enter business email'}
             />
           </div>
+
+          {/* Client-specific fields */}
+          {userType === 'client' && (
+            <>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  required
+                  value={formData.phoneNumber}
+                  onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  placeholder="Enter your phone number"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Date of Birth
+                </label>
+                <input
+                  type="date"
+                  required
+                  value={formData.dateOfBirth}
+                  onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                />
+              </div>
+            </>
+          )}
+
+          {/* Bank-specific fields */}
+          {userType === 'bank' && (
+            <>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Bank Name
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.bankName}
+                  onChange={(e) => setFormData({ ...formData, bankName: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  placeholder="Enter your bank name"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Bank Code / Swift Code
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.bankCode}
+                  onChange={(e) => setFormData({ ...formData, bankCode: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  placeholder="Enter bank code or SWIFT code"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Business Address
+                </label>
+                <textarea
+                  required
+                  value={formData.businessAddress}
+                  onChange={(e) => setFormData({ ...formData, businessAddress: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  placeholder="Enter your business address"
+                  rows={3}
+                />
+              </div>
+            </>
+          )}
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
